@@ -1,0 +1,9 @@
+ListNode* Solution::swapPairs(ListNode* A) {
+    ListNode *ans=A;
+    while(A&&A->next)
+    {
+        swap(A->val,A->next->val);
+        A=A->next->next;
+    }
+    return ans;
+}
