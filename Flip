@@ -1,0 +1,41 @@
+vector<int> Solution::flip(string A) {
+    vector<int> output;
+    bool flag=true;
+    for(int i=0;i<A.length();i++)
+    {
+        if(A[i]=='0')
+        {
+            A[i]=1;
+            flag=false;
+        }
+        else
+        A[i]=-1;
+    }
+    
+    if(flag)
+    return output;
+    
+    output.resize(2);
+    int sum=0,mxsum=0,left=0,right=0;
+    for(int i=0;i<A.size();i++)
+    {
+        sum+=A[i];
+        if(sum>mxsum)
+        {
+            mxsum=sum;
+            right=i;
+            output[0]=left+1;
+            output[1]=right+1;
+        }
+        
+        if(sum<0)
+        {
+            sum=0;
+            left=i+1;
+            
+        }
+          
+    }
+    
+    return output;
+}
