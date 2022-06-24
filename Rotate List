@@ -1,0 +1,26 @@
+ListNode* Solution::rotateRight(ListNode* A, int B) {
+    ListNode *temp=A;
+    ListNode *prev=NULL;
+    int n=0;
+    while(temp)
+    {
+        ++n;
+        prev=temp;
+        temp=temp->next;
+    }
+    prev->next=A;
+    temp=A;
+    B=B%n;
+    
+    n-=B;
+   
+   ListNode *curr=A;
+   prev=NULL;
+   while(n--)
+   {
+       prev=curr;
+       curr=curr->next;
+   }
+   prev->next=NULL;
+   return curr;
+}
