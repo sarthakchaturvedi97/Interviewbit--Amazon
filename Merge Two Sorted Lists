@@ -1,0 +1,22 @@
+ListNode* Solution::mergeTwoLists(ListNode* A, ListNode* B) {
+    
+    if(!A)
+    return B;
+    
+    if(!B)
+    return A;
+    
+    ListNode *newhead;
+    
+    if(A->val<B->val)
+    {
+        newhead=A;
+        newhead->next=mergeTwoLists(A->next,B);
+    }
+    else
+    {
+        newhead=B;
+        newhead->next=mergeTwoLists(A,B->next);
+    }
+    return newhead;
+}
