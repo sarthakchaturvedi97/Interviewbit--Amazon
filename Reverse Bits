@@ -1,0 +1,13 @@
+bool isbitset(unsigned int A,int pos)
+{
+    return ((1<<(pos-1))&A);
+}
+unsigned int Solution::reverse(unsigned int A) {
+    unsigned int ans=0;
+    for(int i=1;i<=32;i++)
+    {
+        if(isbitset(A,i))
+        ans=ans| 1<<(32-i);
+    }
+    return ans;
+}
