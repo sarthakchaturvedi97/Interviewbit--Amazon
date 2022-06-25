@@ -1,0 +1,17 @@
+vector<int> Solution::twoSum(const vector<int> &A, int B) {
+    unordered_map<int,int> mp;
+    vector<int> output;
+    for(int i=0;i<A.size();i++)
+    {
+        if(mp.find(B-A[i])!=mp.end())
+        {
+            output.push_back(mp[B-A[i]]+1);
+            output.push_back(i+1);
+            return output;
+        }
+        else
+        if(mp.find(A[i])==mp.end())
+        mp[A[i]]=i;
+    }
+    return output;
+}
