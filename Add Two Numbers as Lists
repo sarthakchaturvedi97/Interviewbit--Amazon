@@ -1,0 +1,27 @@
+ListNode* Solution::addTwoNumbers(ListNode* A, ListNode* B) {
+    ListNode *ans=new ListNode(INT_MIN);
+    ListNode *finans=ans;
+    int sum=0,carry=0;
+    while(A||B||carry)
+    {
+        sum=0;
+        if(A)
+        {
+            sum+=A->val;
+            A=A->next;
+        }
+        
+        if(B)
+        {
+            sum+=B->val;
+            B=B->next;
+        }
+        
+        sum+=carry;
+        carry=sum/10;
+        sum=sum%10;
+        ans->next=new ListNode(sum);
+        ans=ans->next;
+    }
+    return finans->next;
+}
