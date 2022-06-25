@@ -1,0 +1,33 @@
+void Solution::setZeroes(vector<vector<int> > &A) {
+     int row=A.size(),col=A[0].size();
+    
+    bool flag=true;
+    
+    for(int i=0;i<row;i++)
+    {
+        if(!A[i][0])
+        flag=false;
+        
+        for(int j=1;j<col;j++)
+        {
+            if(!A[i][j])
+            {
+                A[i][0]=0;
+                A[0][j]=0;
+            }
+        }
+    }
+    
+    for(int i=row-1;i>=0;i--)
+    {
+        for(int j=col-1;j>=1;j--)
+        {
+            if(!A[i][0]||!A[0][j])
+            A[i][j]=0;
+            
+            
+        }
+        if(!flag)
+        A[i][0]=0;    //Outside j loop because if there is only  1 col then the j loop would not work!!!!
+    }
+}
