@@ -1,0 +1,34 @@
+vector<int> Solution::spiralOrder(const vector<vector<int> > &A) {
+    int strow=0,stcol=0,endrow=A.size()-1,endcol=A[0].size()-1;
+    vector<int> result;
+    while(strow<=endrow&&stcol<=endcol)
+    {
+        for(int col=stcol;col<=endcol;col++)
+        result.push_back(A[strow][col]);
+        
+        
+        strow++;
+        
+        for(int row=strow;row<=endrow;row++)
+        result.push_back(A[row][endcol]);
+        
+        endcol--;
+        
+        if(strow<=endrow)
+        {
+            for(int col=endcol;col>=stcol;col--)
+            result.push_back(A[endrow][col]);
+        }
+        
+        endrow--;
+        
+        if(stcol<=endcol)
+        {
+            for(int row=endrow;row>=strow;row--)
+            result.push_back(A[row][stcol]);
+        }
+        
+        stcol++;
+    }
+    return result;
+}
