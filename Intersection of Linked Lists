@@ -1,0 +1,44 @@
+int getLength(ListNode *head)
+ {
+     int count=0;
+     while(head)
+     {
+         ++count;
+         head=head->next;
+     }
+     return count;
+ }
+ ListNode* mxCount(ListNode* A,ListNode *B)
+ {
+     while(A&&B)
+     {
+         if(A==B)
+         return A;
+         
+         A=A->next;
+         B=B->next;
+     }
+     return NULL;
+ }
+ListNode* Solution::getIntersectionNode(ListNode* A, ListNode* B) {
+    int l1=getLength(A);
+    int l2=getLength(B);
+    
+    int cnt=abs(l1-l2);
+    if(!cnt)
+    return mxCount(A,B);
+    else
+    {
+        if(l1>l2)
+        {
+            while(cnt--)
+            A=A->next;
+        }
+        else
+        {
+            while(cnt--)
+            B=B->next;
+        }
+    }
+    return mxCount(A,B);
+}
