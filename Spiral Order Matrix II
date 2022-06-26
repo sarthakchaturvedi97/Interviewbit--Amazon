@@ -1,0 +1,49 @@
+vector<vector<int> > Solution::generateMatrix(int A) {
+    vector<vector<int>> result(A,vector<int>(A));
+    if(A==0)
+    return result;
+    
+    int strow=0,stcol=0,endrow=A-1,endcol=A-1;
+    int count=1;
+    while(strow<=endrow&&stcol<=endcol)
+    {
+        for(int i=stcol;i<=endcol;i++)
+        {
+            result[strow][i]=count;
+            ++count;
+        }
+        
+        strow++;
+        
+        for(int i=strow;i<=endrow;i++)
+        {
+            result[i][endcol]=count;
+            ++count;
+        }
+        
+        endcol--;
+        
+        if(strow<=endrow)
+        {
+            for(int i=endcol;i>=stcol;i--)
+            {
+                result[endrow][i]=count;
+                ++count;
+            }
+        }
+        
+        endrow--;
+        
+        if(stcol<=endcol)
+        {
+            for(int i=endrow;i>=strow;i--)
+            {
+                result[i][stcol]=count;
+                ++count;
+            }
+        }
+        
+        stcol++;
+    }
+    return result;
+}
