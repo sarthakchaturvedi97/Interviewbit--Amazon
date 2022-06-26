@@ -1,0 +1,17 @@
+void getInorder(TreeNode* A,vector<int> &result)
+ {
+     if(!A)
+     return;
+     
+     getInorder(A->left,result);
+     result.push_back(A->val);
+     getInorder(A->right,result);
+     return;
+ }
+vector<int> Solution::inorderTraversal(TreeNode* A) {
+    vector<int> result;
+    if(!A)
+    return result;
+    getInorder(A,result);
+    return result;
+}
