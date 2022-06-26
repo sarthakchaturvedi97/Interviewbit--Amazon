@@ -1,0 +1,15 @@
+int Solution::removeDuplicates(vector<int> &A) {
+    int i=0,j=0;
+    int n=A.size();
+    while(i<n&&j<n)
+    {
+        if(A[i]!=A[j])
+        {
+            i++;
+            A[i]=A[j];
+        }
+        
+        j++;
+    }
+    return i+1;
+}
