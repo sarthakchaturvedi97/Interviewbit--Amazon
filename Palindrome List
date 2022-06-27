@@ -1,0 +1,66 @@
+// O(N) Space using stack Time: O(N)
+int Solution::lPalin(ListNode* A) {
+    stack<int> st;
+    ListNode* curr=A;
+    while(curr)
+    {
+        st.push(curr->val);
+        curr=curr->next;
+    }
+    
+    while(!st.empty())
+    {
+       
+        if(st.top()!=A->val)
+        return false;
+        
+        st.pop();
+        A=A->next;
+    }
+    return true;
+}
+
+
+
+//O(1) space Time: O(N)
+
+ListNode *reverse(ListNode *root)
+ {
+     ListNode *curr=root;
+     ListNode *prev=NULL;
+     
+     while(curr)
+     {
+         ListNode *n=curr->next;
+         curr->next=prev;
+         prev=curr;
+         curr=n;
+     }
+     root=prev;
+     return root;
+ }
+int Solution::lPalin(ListNode* A) {
+   if(!A||!A->next)
+   return true;
+   
+   ListNode *fast=A;
+   ListNode *slow=A;
+   
+   while(fast->next&&fast->next->next)
+   {   
+       fast=fast->next->next;
+       slow=slow->next;
+   }
+   
+   slow->next=reverse(slow->next);
+   fast=A;
+   slow=slow->next;
+   while(slow){
+       if(fast->val!=slow->val)
+       return 0;
+       
+       slow=slow->next;
+       fast=fast->next;
+   }
+   return 1;
+}
