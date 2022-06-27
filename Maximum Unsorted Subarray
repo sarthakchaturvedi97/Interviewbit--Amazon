@@ -1,0 +1,36 @@
+vector<int> Solution::subUnsort(vector<int> &A) {
+    vector<int> result(2);
+    int end=-1;
+    int mx=A[0];
+    for(int i=1;i<A.size();i++)
+    {
+        if(mx>A[i])
+        {
+            end=i;
+        }
+        else
+        mx=A[i];
+    }
+    int st=-1;
+    int mn=A[A.size()-1];
+    for(int i=A.size()-2;i>=0;i--)
+    {
+        if(mn<A[i])
+        {
+            st=i;
+        }
+        else
+        mn=A[i];
+    }
+    if(st==-1&&end==-1)
+    {
+        result.resize(1);
+        result[0]=-1;
+    }
+    else
+    {
+        result[0]=st;
+        result[1]=end;
+    }
+    return result;
+}
