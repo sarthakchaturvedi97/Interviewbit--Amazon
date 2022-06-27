@@ -1,0 +1,23 @@
+int Solution::solve(ListNode* A, int B) {
+    ListNode *curr=A;
+    int count=0;
+    while(curr)
+    {
+        ++count;
+        curr=curr->next;
+    }
+    
+    count=count/2;
+    count+=1;
+    
+    if(B>=count)
+    return -1;
+    
+    count-=B;
+    curr=A;
+    while(--count)
+    {
+        A=A->next;
+    }
+    return A->val;
+}
