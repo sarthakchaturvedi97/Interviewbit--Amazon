@@ -1,0 +1,49 @@
+bool length(ListNode *A)
+ {
+     int count=0;
+     while(A)
+     {
+         ++count;
+         A=A->next;
+     }
+     return count<=3?1:0;
+ }
+ListNode* Solution::solve(ListNode* A) {
+    if(length(A))
+    return A;
+    
+    ListNode *odd=new ListNode(INT_MIN);
+    ListNode *odd1=odd;
+    ListNode *even=NULL;
+    ListNode *answer=new ListNode(INT_MIN);
+    ListNode *result=answer;
+    while(A)
+    {
+        odd->next=new ListNode(A->val);
+        odd=odd->next;
+        A=A->next;
+        if(A)
+        {
+            ListNode *n=new ListNode(A->val);
+            n->next=even;
+            even=n;
+            A=A->next;
+        }          
+    }
+    odd1=odd1->next;
+    while(odd1||even)
+    {
+        answer->next=new ListNode(odd1->val);
+        odd1=odd1->next;
+        answer=answer->next;
+        if(even)
+        {
+             answer->next=new ListNode(even->val);
+            even=even->next;
+            answer=answer->next;
+        }
+       
+    }
+    answer->next=NULL;
+    return result->next;
+}
