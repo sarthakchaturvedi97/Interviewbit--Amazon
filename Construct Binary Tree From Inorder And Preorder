@@ -1,0 +1,27 @@
+ TreeNode *getSolution(vector<int> &A,vector<int> &B,int st,int end,int &k)
+ {
+     if(st>end)
+     return NULL;
+     
+     int data=A[k++];
+     TreeNode *root=new TreeNode(data);
+     int j=-1;
+     for(int i=st;i<=end;i++)
+     {
+         if(data==B[i])
+         {
+             j=i;
+             break;
+         }
+     }
+     root->left=getSolution(A,B,st,j-1,k);
+     root->right=getSolution(A,B,j+1,end,k);
+     return root;
+ }
+TreeNode* Solution::buildTree(vector<int> &A, vector<int> &B) {
+    if(A.size()==0)
+    return NULL;
+    
+    int k=0;
+   return getSolution(A,B,0,A.size()-1,k);
+}
