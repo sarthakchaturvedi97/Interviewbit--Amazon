@@ -1,0 +1,28 @@
+ListNode* Solution::solve(ListNode* A) {
+    int count=0,count1=0;
+    while(A)
+    {
+        if(A->val==1)
+        ++count1;
+        else
+        ++count;
+        
+        A=A->next;
+    }
+    
+    ListNode *result=new ListNode(INT_MIN);
+    ListNode *answer=result;
+    
+    while(count--)
+    {
+        result->next=new ListNode(0);
+        result=result->next;
+    }
+    while(count1--)
+    {
+        result->next=new ListNode(1);
+        result=result->next;
+    }
+    result->next=NULL;
+    return answer->next;
+}
