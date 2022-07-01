@@ -1,0 +1,18 @@
+int getCheck(TreeNode *A,TreeNode *B)
+ {
+     if(!A||!B)
+     return A==B;
+     
+     if(A->val==B->val&&getCheck(A->left,B->right)&&getCheck(A->right,B->left))
+     return 1;
+     else
+     return 0;
+     
+ }
+int Solution::isSymmetric(TreeNode* A) {
+    
+    if(!A)
+    return 1;
+    
+    return getCheck(A->left,A->right);
+}
