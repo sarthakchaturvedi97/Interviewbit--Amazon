@@ -1,0 +1,22 @@
+int height(TreeNode* A)
+ {
+     if(!A)
+     return 0;
+     
+     int lft=height(A->left);
+     int rht=height(A->right);
+     return 1+max(lft,rht);
+ }
+
+int Solution::isBalanced(TreeNode* A) {
+   if(!A)
+   return true;
+   
+   int lft=height(A->left);
+   int rht=height(A->right);
+   
+   if(abs(lft-rht)<=1&&isBalanced(A->left)&&isBalanced(A->right))
+   return true;
+   else
+   return false;
+}
