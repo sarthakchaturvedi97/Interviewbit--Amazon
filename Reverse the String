@@ -1,0 +1,23 @@
+string Solution::solve(string A) {
+    if(A.length()==0)
+    return A;
+    
+    string s;
+    string result;
+    A=A+" ";
+    for(int i=0;i<A.length();i++)
+    {
+        if(A[i]!=' ')
+        {
+            s+=A[i];
+        }
+        else
+        if(!s.empty())
+        {
+            result=s+" "+result;
+            s.clear();
+        }
+    }
+    result.pop_back();
+    return result;
+}
