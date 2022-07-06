@@ -1,0 +1,33 @@
+RandomListNode* Solution::copyRandomList(RandomListNode* A) {
+    RandomListNode *curr=A;
+    while(curr)
+    {
+        RandomListNode *n=curr->next;
+        curr->next=new RandomListNode(curr->label);
+        curr->next->next=n;
+        curr=n;
+    }
+    
+    curr=A;
+    while(curr)
+    {
+        if(curr->next)
+        curr->next->random=curr->random?curr->random->next:curr->random;
+        
+        curr=curr->next?curr->next->next:curr->next;
+    }
+    
+    RandomListNode *ori=A;
+    RandomListNode *co=A->next;
+    curr=co;
+    
+    while(ori&&co)
+    {
+        ori->next=ori->next?ori->next->next:ori->next;
+        co->next=co->next?co->next->next:co->next;
+        ori=ori->next;
+        co=co->next;
+    }
+    
+    return curr;
+}
