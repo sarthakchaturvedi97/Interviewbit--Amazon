@@ -1,0 +1,45 @@
+void getChanges(TreeNode *A,TreeNode *&first,TreeNode *&middle,TreeNode *&end,TreeNode *&prev)
+ {
+     if(!A)
+     return;
+     
+     getChanges(A->left,first,middle,end,prev);
+         
+         if(prev && (A->val<prev->val))
+         {
+             
+             if(!first)
+             {
+                 first=prev;
+                 middle=A;
+             }
+             else
+             {
+                 end=A;
+             }
+         }
+         
+         prev=A;
+         getChanges(A->right,first,middle,end,prev);
+ }
+vector<int> Solution::recoverTree(TreeNode* A) {
+    vector<int> result(2);
+    TreeNode *first, *middle, *end, *prev;
+    first=middle=end=NULL;
+    prev=new TreeNode(INT_MIN);
+    getChanges(A,first,middle,end,prev);
+    
+    if(first&&end)
+    {
+        result[1]=first->val;
+        result[0]=end->val;
+    }
+    else
+    if(first&&middle)
+    {
+        result[1]=first->val;
+        result[0]=middle->val;
+    }
+    
+    return result;
+}
